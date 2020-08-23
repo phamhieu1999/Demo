@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>To Do List</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- font-awesome css -->
+  <link rel="stylesheet" href="./resources/css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Customer css -->
+  <link rel="stylesheet" href="./resources/css/style.css">
+</head>
+
+<body>
+
+  <!-- Custom close app -->
+  <!-- <i id="close-btn" class=" fa fa-times" aria-hidden="true"></i> -->
+
+  <!-- thong tin ngay thang nam -->
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 d-flex align-items-center justify-content-between">
+        <div class="d-flex flex-row y-m-gr align-items-center">
+          <div class="day">24</div>
+          <div class="flex-column">
+            <div class="month">Feb</div>
+            <div class="year">2020</div>
+          </div>
+        </div>
+        <div class="day-of-week">Monday</div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+  <!-- Progress xu ly cong viec -->
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+      <div id="progress-task" class="col-10 progress">
+        <div class="compl progress-bar bg-success"></div>
+        <div class="dolte progress-bar bg-warning"></div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+  <!-- <input type="text" value=""> -->
+  <!-- Add new item -->
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 d-flex add-new align-items-center">
+        <input type="text" name="add-new-work" id="add-work" placeholder="Add new item">
+        <i id="icon-add-task" style="width: 0;" class=" fa fa-plus fa-2x" aria-hidden="true"></i>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+
+  <!-- Work list -->
+  <div class="container work-display">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10 d-flex flex-column">
+        <div id="work-list" class="work-list">
+
+        </div>
+
+        <!-- Do later list -->
+        <div class="do-later-list">
+          <div class="title">
+            <i class="angle-type fa fa-angle-right"></i> Do Later
+          </div>
+
+          <div id="do-later-list" class=" work-list">
+
+          </div>
+        </div>
+
+        <!-- Completed list -->
+        <div class="completed-list">
+          <div class="title">
+            <i class="angle-type fa fa-angle-right"></i> Completed
+          </div>
+
+          <div id="completed-list" class=" work-list">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+  <!-- Reset  btn -->
+
+  <div class="d-flex justify-content-around">
+    <div id="reset-task" class="btn btn-info">Reset Task</div>
+    <div id="send-report" class="btn btn-success">Send Report</div>
+  </div>
+
+  <!-- Optional JavaScript -->
+ <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="./resources/js/myscript.js"></script>
+  <script src="./resources/js/sendmail.js"></script>
+</body>
+
+</html>
