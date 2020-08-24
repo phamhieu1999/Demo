@@ -1,6 +1,18 @@
 
+
 $(document).ready(() => {
 
+  function sendMail() {
+    ipcRenderer.send('send-mail', []);
+  }
+  function exportExcel() {
+    ipcRenderer.send('export-excel', []);
+
+  }
+  function importExcel() {
+    ipcRenderer.send('import-excel', []);
+
+  }
   var listTask = {
     workList: [],
     doLaterList: [],
@@ -133,7 +145,7 @@ $(document).ready(() => {
     })
     ipcRenderer.send('request-get-completed-list', [])
   }
- 
+
   // Them task
   var addToDoing = function (e) {
     let code = e.key;
@@ -171,7 +183,7 @@ $(document).ready(() => {
     let type = 0;
     item.remove();
     switch (typeTask) {
-      case 'work-list': 
+      case 'work-list':
         type = 1;
         g_len.doing--;
         break;
@@ -191,13 +203,15 @@ $(document).ready(() => {
   // reset task
   const resetTask = () => {
     progress();
-    g_len.doing;
+    g_len.doing++;
     g_len.doLater--;
     g_len.completed--;
-     $('#completed-list').remove()
+   
     $('#do-later-list').remove()
-    const { port1, port2 } = new MessageChannel
-    ipcRenderer.postMessage("resetTask",[], [port1]);
+    $('#completed-list').remove()
+
+    const { port1} = new MessageChannel
+    ipcRenderer.postMessage("resetTask", [], [port1]);
   }
 
   function taskPause() {
@@ -282,13 +296,16 @@ $(document).ready(() => {
     const { port1, port2 } = new MessageChannel
     ipcRenderer.postMessage("request-swap-task", { content, from: type, to: 3 }, [port1]);
   }
+  $('#excel-import').on('click', importExcel)
+  $('#excel-export').on('click', exportExcel)
 
   setLen();
   $('.work-list').on('click', '.item .fa-times', removeAnTask)
   $('.work-list').on('click', '.item .fa-pause', taskPause)
   $('.work-list').on('click', '.item .fa-check', taskCompleted)
   $('.work-list').on('click', '.item .fa-play', taskPlay)
-  $('#reset-task').on('click',resetTask)
+  $('#reset-task').on('click', resetTask)
+  $('body').on('click', '#send-report', sendMail)
 
   progress();
   setDoingHTML();
@@ -298,6 +315,7 @@ $(document).ready(() => {
   // getLen()
   $('#add-work').keyup(addToDoing);
   $('#icon-add-task').click(addToDoing);
+
 
 
 

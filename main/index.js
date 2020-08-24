@@ -73,7 +73,38 @@ ipcMain.on('request-save-file', (e, filename) => {
   ipcMain.on('request-get-len', (e, d) => {
     e.returnValue = require("./listData.js").getLen
   })
-
+  //send mail
+  ipcMain.on('send-mail',(e,args)=>{
+    require('../resources/js/sendmail').sendMail();
+  })
+  ipcMain.on('export-excel',(e,args)=>{
+    require('../resources/js/excel').exportExcel()
+    .then((res) => {
+      if (res) {
+        console.log(res)
+        let btnN = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
+          title: "Open File",
+          type: "question",
+          message: "Do you want to open excel file to be 've exported?",
+          buttons: ["Ok", "No", "Cancel"]
+        })
+        if (!btnN) {
+          let open = spawn(`start "" "${res}"`, [], {
+            shell: true,
+            detached: true
+          })
+          open.on("error", () => {
+            let filename = res.split(`\\`).pop();
+            console.log(filename)
+            dialog.showErrorBox("Warning!", `${filename} is opening ...`);
+          })
+        }
+      }
+    })
+  })
+  ipcMain.on('import-excel',(e,args)=>{
+    require('../resources/js/excel').importExcel();
+  })
 
 app.whenReady().then(createWindow);
 

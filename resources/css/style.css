@@ -177,3 +177,9 @@ i#close-btn {
 .completed-list .title {
   color: #28a745 !important;
 }
+#excel-name{
+  margin-top: 20px !important;
+}
+#excel-export{
+  color:white !important
+}
